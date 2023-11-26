@@ -1,124 +1,145 @@
-import {
-  createStyles,
-  Text,
-  Title,
-  SimpleGrid,
-  TextInput,
-  Textarea,
-  Button,
-  Group,
-  ActionIcon,
-  rem,
-  useMantineTheme,
-} from "@mantine/core";
-import {
-  BrandTwitter,
-  BrandYoutube,
-  BrandInstagram,
-} from "tabler-icons-react";
-
-const useStyles = createStyles((theme) => ({
-  wrapper: {
-    boxSizing: "border-box",
-    backgroundColor:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[5]
-        : theme.colors.gray[1],
-    borderRadius: theme.radius.md,
-    padding: `calc(${theme.spacing.xl} * 2.5)`,
-    minHeight: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-around",
-    [theme.fn.smallerThan("sm")]: {
-      padding: `calc(${theme.spacing.xl} * 1.5)`,
-    },
-  },
-
-  title: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    color: theme.white,
-    lineHeight: 1,
-  },
-
-  description: {
-    color: theme.colorScheme === "dark" ? theme.white : theme.black,
-    maxWidth: rem(500),
-    [theme.fn.smallerThan("sm")]: {
-      maxWidth: "100%",
-    },
-  },
-
-  form: {
-    backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[3] : theme.white,
-    padding: theme.spacing.xl,
-    borderRadius: theme.radius.md,
-    boxShadow: theme.shadows.lg,
-  },
-
-  social: {
-    color: theme.white,
-
-    "&:hover": {
-      color: theme.colors[theme.primaryColor][1],
-    },
-  },
-
-  input: {
-    backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[3] : theme.white,
-    borderColor:
-      theme.colorScheme === "dark" ? theme.colors.yellow[6] : theme.black,
-    color: theme.colorScheme === "dark" ? theme.colors.yellow[6] : theme.black,
-
-    "&::placeholder": {
-      color: theme.colors.gray[5],
-    },
-  },
-
-  inputLabel: {
-    color: theme.colorScheme === "dark" ? theme.colors.yellow[6] : theme.black,
-  },
-
-  control: {
-    backgroundColor: theme.colors[theme.primaryColor][6],
-  },
-}));
-
-const social = [BrandTwitter, BrandYoutube, BrandInstagram];
+import { Container, Grid, Title } from "@mantine/core";
+import ContactCard from "../components/Contact-card";
+import ContactSection from "../components/section/Contact-section";
+// import { IconMapPin, IconPhone, IconMail, IconClock } from "@tabler/icons";
+import { MapPin, Phone, Mail, Clock } from "tabler-icons-react";
+import "./Contacts.css";
 
 const ContactPage = () => {
-  const theme = useMantineTheme();
-  const { classes } = useStyles();
-
-  const icons = social.map((Icon, index) => (
-    <ActionIcon
-      key={index}
-      size={28}
-      className={classes.social}
-      variant="transparent"
-    >
-      <Icon size="1.4rem" stroke={1.5} />
-    </ActionIcon>
-  ));
-
+  const contactData = [
+    {
+      title: "Адрес:",
+      text: "211501, Витебская обл., г. Новополоцк, ул. Молодежная, д. 166",
+      icon: <MapPin color="royalblue" size={31} />,
+      links: [],
+    },
+    {
+      title: "Телефон:",
+      text: "",
+      icon: <Phone color="royalblue" size={31} />,
+      links: [
+        { name: "+375293721885", type: "tel", link: "+375293721885" },
+        { name: "+375175420320", type: "tel", link: "+375175420320" },
+      ],
+    },
+    {
+      title: "Электронная почта:",
+      text: "",
+      icon: <Mail color="royalblue" size={31} />,
+      links: [
+        { name: "info@klen-m.by", type: "mailto", link: "info@klen-m.by" },
+      ],
+    },
+    {
+      title: "График работы:",
+      text: "Пн-Пт: 9:00-17:00",
+      icon: <Clock color="royalblue" size={31} />,
+      links: [],
+    },
+  ];
+  const contactData2 = [
+    {
+      title: "Адрес:",
+      text: "222053, Минская обл., Минский р-н, Боровлянский с/c, д. 65-1А, р-н д. Малиновка",
+      icon: <MapPin color="royalblue" size={31} />,
+      links: [],
+    },
+    {
+      title: "Телефон:",
+      text: "",
+      icon: <Phone color="royalblue" size={31} />,
+      links: [
+        { name: "+375293721885", type: "tel", link: "+375293721885" },
+        { name: "+375175420320", type: "tel", link: "+375175420320" },
+      ],
+    },
+    {
+      title: "Электронная почта:",
+      text: "",
+      icon: <Mail color="royalblue" size={31} />,
+      links: [
+        { name: "info@klen-m.by", type: "mailto", link: "info@klen-m.by" },
+      ],
+    },
+    {
+      title: "График работы:",
+      text: "Пн-Пт: 9:00-17:00",
+      icon: <Clock color="royalblue" size={31} />,
+      links: [],
+    },
+  ];
+  const contactPeopleData = [
+    {
+      title: "Отдел продаж",
+      name: "Кулаковский Егор",
+      phoneMobile: "+375293721885",
+      phoneCity: "+375175420320",
+      mail: "info@klen-m.by",
+      avatar:
+        "https://firebasestorage.googleapis.com/v0/b/klen-824fd.appspot.com/o/pic%2Fbusinessman-svgrepo-com.svg?alt=media&token=661426b6-7246-4f4e-8d20-5636541bffec",
+    },
+    {
+      title: "Директор",
+      name: "Чесноков Алексей",
+      phoneMobile: "+375296772648",
+      phoneCity: "+375175420325",
+      mail: "klen_minsk@mail.ru",
+      avatar:
+        "https://firebasestorage.googleapis.com/v0/b/klen-824fd.appspot.com/o/pic%2Fbusinessman-svgrepo-com.svg?alt=media&token=661426b6-7246-4f4e-8d20-5636541bffec",
+    },
+    {
+      title: "Бухгалтер",
+      name: "Акунец Александр",
+      phoneMobile: "+375291363812",
+      phoneCity: "+375175420325",
+      mail: "buhklen@mail.ru",
+      avatar:
+        "https://firebasestorage.googleapis.com/v0/b/klen-824fd.appspot.com/o/pic%2Fbusinessman-svgrepo-com.svg?alt=media&token=661426b6-7246-4f4e-8d20-5636541bffec",
+    },
+  ];
   return (
-    <div className={classes.wrapper}>
-      <SimpleGrid
-        cols={2}
-        spacing={50}
-        breakpoints={[{ maxWidth: "sm", cols: 1 }]}
-      >
-        <div>
-          <Title mb="xl">Контактная информация</Title>
-
-
-          <Group mt="xl">{icons}</Group>
-        </div>
-      </SimpleGrid>
-    </div>
+    <>
+      <Container>
+        <Title mb="md" mt="md" order={1} align="center">
+          Контакты
+        </Title>
+        <ContactSection data={contactData2} title={"Офис"} office={true}/>
+        <ContactSection data={contactData} title={"Производство"} office={false}/>
+        <Grid mt="md" mb="md">
+        {contactPeopleData.map((item, i) => {
+              return (
+                <Grid.Col md={4}>
+              <ContactCard
+                title={item.title}
+                name={item.name}
+                phoneMobile={item.phoneMobile}
+                phoneCity={item.phoneCity}
+                mail={item.mail}
+                avatar={item.avatar}
+              />
+            </Grid.Col>
+              )
+            })}
+        </Grid>
+        <Grid>
+          <Grid.Col md={12} className="contacts-text__wrap">
+            <div>
+              <p className="contacts-text">
+                Общество с дополнительной ответственностью
+                «Производственно-строительный комплекс Клён» ( ОДО «ПСК Клён» )
+                Свидетельство № 600050314, выдано 13.09.2012г. Минским
+                райисполкомом 223053 Минская обл., Минский р-н, Боровлянский
+                с/с, 65-1а, район д. Малиновка, Республика Беларусь.
+                Телефон (017) 542-03-20, 542-03-25Р/сч:
+                BY79BPSB30121736180139330000 в ОАО "БПС-Сбербанк" Дополнительный
+                офис № 709, г. Минск, пр-кт Дзержинского 119 код BPSBBY2X, УНН
+                600050314 ОКПО 28589187
+              </p>
+            </div>
+          </Grid.Col>
+        </Grid>
+      </Container>
+    </>
   );
 };
-
 export default ContactPage;

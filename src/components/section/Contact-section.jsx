@@ -1,7 +1,7 @@
 import { Container, Grid, Paper, Stack } from "@mantine/core";
-import TitleDescr from "../UI/Title-descr";
-import { YMaps, Map, Placemark } from "react-yandex-maps";
-import ContactSectionItem from "../UI/Contact-section-item";
+import TitleDescr from "../Title-descr";
+// import { YMaps, Map, Placemark } from "react-yandex-maps";
+import ContactSectionItem from "../Contact-section-item";
 
 const ContactSection = ({ data, title, office=true }) => {
   return (
@@ -24,7 +24,7 @@ const ContactSection = ({ data, title, office=true }) => {
               })}
             </Stack>
           </Grid.Col>
-          <Grid.Col md={6}>
+          {/* <Grid.Col md={6}>
             {office ? <YMaps style={{ width: "100%", height: "100%" }}>
               <Map
                 width="100%"
@@ -42,7 +42,7 @@ const ContactSection = ({ data, title, office=true }) => {
                 <Placemark geometry={[55.514506, 28.679927]} />
               </Map>
             </YMaps>}
-          </Grid.Col>
+          </Grid.Col> */}
         </Grid>
       </Paper>
     </Container>

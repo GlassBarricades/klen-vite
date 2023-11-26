@@ -63,18 +63,27 @@ const ProductPage = () => {
         <Paper mt="md" p="md" shadow="md">
           <Grid mt={20}>
             <Grid.Col md={4}>
-              <Image
+              {product.img ? <Image
                 height={400}
                 fit="contain"
                 src={product.img}
                 alt={product.name}
-              />
+              /> : "Изображение отсутствует"}
+              {/* <Image
+                height={400}
+                fit="contain"
+                src={product.img}
+                alt={product.name}
+              /> */}
             </Grid.Col>
             <Grid.Col md={8}>
               <Title order={2}>{product.name}</Title>
-              <Text className={classes.catalogItemPrice}>
+              {product.price ? <Text className={classes.catalogItemPrice}>
                 Цена: {product.price} руб
-              </Text>
+              </Text> : undefined}
+              {/* <Text className={classes.catalogItemPrice}>
+                Цена: {product.price} руб
+              </Text> */}
               <Group className={classes.catalogMarkers}>
                 {product.top ? (
                   <Badge
@@ -97,7 +106,9 @@ const ProductPage = () => {
                   ""
                 )}
               </Group>
-              <Text className={classes.catalogItemDescr}>{product.descr}</Text>
+              {product.descr ? <Text className={classes.catalogItemDescr}>{product.descr}</Text> : undefined}
+              {/* <Text className={classes.catalogItemDescr}>{product.descr}</Text> */}
+              {}
               <Text className={classes.catalogItemDim}>
                 Размеры: {product.dimensions}
               </Text>
