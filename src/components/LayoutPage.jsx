@@ -1,12 +1,9 @@
-import { useState } from "react";
 import { AppShell, Footer, useMantineTheme } from "@mantine/core";
 import { Outlet } from "react-router-dom";
 import { HeaderSimple } from "./Header";
-import NavBarApp from "./NavBarApp";
 
 const App = () => {
   const theme = useMantineTheme();
-  const [opened, setOpened] = useState(false);
 
   const linksMain = [
 		{
@@ -46,11 +43,8 @@ const App = () => {
 			}}
 			navbarOffsetBreakpoint='sm'
 			asideOffsetBreakpoint='sm'
-			// navbar={<NavBarApp links={linksMain} opened={opened} setOpened={setOpened} />}
 			header={
 				<HeaderSimple
-					opened={opened}
-					setOpened={setOpened}
 					linksMain={linksMain}
 				/>
 			}

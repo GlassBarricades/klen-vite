@@ -7,12 +7,17 @@ import {
   MediaQuery,
   Image,
   useMantineTheme,
-  Anchor
+  Anchor,
+  Button,
+  Drawer,
 } from "@mantine/core";
 import { NavLink } from "react-router-dom";
 import { ThemeChange } from "./Theme-change";
-import ContactsHeader from "./ContactsHeader";
+import ContactForm from "./ContactForm";
 import Grafik from "./Grafik";
+import HeaderCallBtn from "./Header-call-btn";
+import { openModal } from "@mantine/modals";
+import { useDisclosure } from '@mantine/hooks';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -69,51 +74,82 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function HeaderSimple({ opened, setOpened, linksMain }) {
-	const theme = useMantineTheme()
-	const { classes, cx } = useStyles()
+export function HeaderSimple({ linksMain }) {
+  const theme = useMantineTheme();
+  const { classes, cx } = useStyles();
+  const [openeDrawer, { open, close }] = useDisclosure(false);
 
   const items = linksMain.map((link, indx) => {
-		return (
-			<Anchor
-				component={NavLink}
-				to={link.link}
-				key={indx}
-				className={classes.link}
-				onClick={() => setOpened(false)}
-			>
-				{link.name}
-			</Anchor>
-		)
-	})
+    return (
+      <Anchor
+        component={NavLink}
+        to={link.link}
+        key={indx}
+        className={classes.link}
+        onClick={close}
+      >
+        {link.name}
+      </Anchor>
+    );
+  });
 
-	return (
-		<Header height={{ base: 50, md: 70 }} p='md'>
-			<div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-				<MediaQuery largerThan='md' styles={{ display: 'none' }}>
-					<Burger
-						opened={opened}
-						onClick={() => setOpened(o => !o)}
-						size='sm'
-						color={theme.colors.gray[6]}
-						mr='xl'
-					/>
-				</MediaQuery>
+  return (
+    <Header height={{ base: 50, md: 70, sm: 70 }} p="md">
+      <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
+      <Drawer
+        opened={openeDrawer}
+        onClose={close}
+        title="Authentication"
+        overlayProps={{ opacity: 0.5, blur: 4 }}
+      >
+        {items}
+      </Drawer>
+        <MediaQuery largerThan="md" styles={{ display: "none" }}>
+          <Burger
+            onClick={open}
+            size="sm"
+            color={theme.colors.gray[6]}
+            mr="xl"
+          />
+        </MediaQuery>
 
-				<Container className={classes.header}>
-					<MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
-						<Image
-							width={60}
-							src='https://firebasestorage.googleapis.com/v0/b/klen-824fd.appspot.com/o/klen-logo.png?alt=media&token=e8ed398c-1e98-4418-8f8e-f182e6ce6b88'
-						/>
-					</MediaQuery>
-					<Grafik />
-					<Group spacing='xs'>{items}</Group>
-					<Group spacing='md' align='center'>
-						<ThemeChange />
-					</Group>
-				</Container>
-			</div>
-		</Header>
-	)
+        <Container className={classes.header}>
+          <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+            <Image
+              width={60}
+              src="https://firebasestorage.googleapis.com/v0/b/klen-824fd.appspot.com/o/klen-logo.png?alt=media&token=e8ed398c-1e98-4418-8f8e-f182e6ce6b88"
+            />
+          </MediaQuery>
+          <Grafik />
+          <MediaQuery smallerThan="md" styles={{ display: "none" }}>
+            <Group spacing="xs">{items}</Group>
+          </MediaQuery>
+          <Group spacing="md" align="center">
+            <HeaderCallBtn />
+            <MediaQuery smallerThan="md" styles={{ display: "none" }}>
+              <Button
+                mr="md"
+                variant="gradient"
+                gradient={{ from: "blue", to: "royalblue" }}
+                color="orange"
+                onClick={() => {
+                  openModal({
+                    title: "Форма заказа звонка",
+                    children: (
+                      <>
+                        <ContactForm />
+                      </>
+                    ),
+                  });
+                }}
+              >
+                Заказать звонок
+              </Button>
+            </MediaQuery>
+            <ThemeChange />
+          </Group>
+        </Container>
+      </div>
+    </Header>
+  );
 }
