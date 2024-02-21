@@ -15,7 +15,7 @@ const HomePage = () => {
 				descrAlign={'left'}
 			/>
 			<Partners />
-			<AppFooter />
+			{/* <AppFooter /> */}
 		</>
 	)
 }

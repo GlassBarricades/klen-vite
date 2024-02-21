@@ -1,5 +1,6 @@
 import { AppShell, Footer, useMantineTheme } from "@mantine/core";
 import { Outlet } from "react-router-dom";
+import AppFooter from "./App-footer";
 import { HeaderSimple } from "./Header";
 
 const App = () => {
@@ -43,6 +44,10 @@ const App = () => {
 			}}
 			navbarOffsetBreakpoint='sm'
 			asideOffsetBreakpoint='sm'
+			padding={0}
+			footer={
+				<AppFooter />
+			  }
 			header={
 				<HeaderSimple
 					linksMain={linksMain}

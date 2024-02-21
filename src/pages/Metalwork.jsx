@@ -1,6 +1,5 @@
 import { Container, Title } from "@mantine/core";
 import ImgText from "../components/Img-text";
-import AppFooter from "../components/App-footer";
 import { ListCheked } from "../components/List-cheked";
 
 const MetalWork = () => {
@@ -39,7 +38,6 @@ const MetalWork = () => {
           title={"ОСУЩЕСТВИМ ВСЕ ВИДЫ РАБОТ С ХОЛОДНО-ЛИСТОВЫМ МЕТАЛЛОМ"}
         />
       </Container>
-      <AppFooter />
     </>
   );
 };

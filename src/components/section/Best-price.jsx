@@ -24,7 +24,6 @@ const useStyles = createStyles((theme) => ({
   title: {
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     fontWeight: 500,
-    color: theme.black,
     lineHeight: 1.2,
     fontSize: 22,
     marginTop: theme.spacing.xs,

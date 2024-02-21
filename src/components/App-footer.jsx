@@ -6,7 +6,8 @@ import {
   createStyles,
   Title,
   Stack,
-  Anchor
+  Anchor,
+  Footer
 } from "@mantine/core";
 import { MapPin, Mail, Clock } from "tabler-icons-react";
 
@@ -14,8 +15,12 @@ const useStyles = createStyles((theme) => ({
   wrapper: {
     width: "100%",
     background:
-      "linear-gradient(90deg, rgba(228,228,242,1) 0%, rgba(234,234,245,1) 35%, rgba(229,237,238,1) 100%)",
+    theme.colorScheme === "light"
+                      ? "linear-gradient(90deg, rgba(228,228,242,1) 0%, rgba(234,234,245,1) 35%, rgba(229,237,238,1) 100%)"
+                      : theme.black,
+      
     padding: "2em 0",
+    position: "static"
   },
   footerText: {
     textAlign: 'left'
@@ -38,7 +43,11 @@ const useStyles = createStyles((theme) => ({
 const AppFooter = () => {
   const { classes } = useStyles();
   return (
-    <div className={classes.wrapper}>
+    <Footer className={classes.wrapper} styles={() => ({
+      root: {
+        position: "normal"
+      },
+    })}>
       <Container>
         <Grid className={classes.footer}>
           <Grid.Col md={4}>
@@ -108,7 +117,7 @@ const AppFooter = () => {
           </Grid.Col>
         </Grid>
       </Container>
-    </div>
+    </Footer>
   );
 };
 export default AppFooter;

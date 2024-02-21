@@ -1,6 +1,5 @@
 import { Container, Title, Text } from "@mantine/core";
 import ImgText from "../components/Img-text";
-import AppFooter from "../components/App-footer";
 import { ListCheked } from "../components/List-cheked";
 
 const Coloring = () => {
@@ -55,7 +54,6 @@ const Coloring = () => {
           поверхностью.
         </Text>
       </Container>
-      <AppFooter />
     </>
   );
 };

@@ -1,18 +1,18 @@
-import { useRef } from 'react';
+import { useRef } from "react";
 import { Table, createStyles, Button } from "@mantine/core";
-import ReactToPrint from 'react-to-print';
+import ReactToPrint from "react-to-print";
 
 const useStyles = createStyles((theme) => ({
   container: {
-    '@media print': {
+    "@media print": {
       margin: "2em",
       marginRight: "2em",
-      '@page': {
-        margin: '1cm'
-    }
+      "@page": {
+        margin: "1cm",
+      },
     },
-  }
-}))
+  },
+}));
 
 const PriceTable = ({ data, filter }) => {
   const componentRef = useRef();
@@ -20,37 +20,48 @@ const PriceTable = ({ data, filter }) => {
   const { classes } = useStyles();
 
   const priceSort = (arr) => {
-    arr.sort((a, b) => (a.name > b.name ? 1 : -1))
+    arr.sort((a, b) => (a.name > b.name ? 1 : -1));
     return arr;
   };
 
-    const filterDataCatalog = (data, category) => {
-       const arrSort = priceSort(data);
-        const arr = arrSort.filter((item) => {
-          if (item.category === category) {
-            return item;
-          } else if (category === "Весь каталог") {
-            return item;
-          }
-          return false;
-        });
-        return arr;
-      };
-    
-      function createRows(data, category) {
-        const el = filterDataCatalog(data, category);
-        const rows = el.map((item, i) => (
+  const filterDataCatalog = (data, category) => {
+    const arrSort = priceSort(data);
+    const arr = arrSort.filter((item) => {
+      if (item.category === category) {
+        return item;
+      } else if (category === "Весь каталог") {
+        return item;
+      }
+      return false;
+    });
+    return arr;
+  };
+
+  function createRows(data, category) {
+    const el = filterDataCatalog(data, category);
+    const rows = el.map((item) => {
+      if (item.price) {
+        return (
           <tr key={item.name}>
             <td>{item.name}</td>
             <td>{item.price} руб</td>
           </tr>
-        ));
-        return rows;
+        );
       }
+    });
+    return rows;
+  }
   return (
     <>
-    <ReactToPrint
-        trigger={() => <Button variant="gradient" gradient={{ from: 'blue', to: 'royalblue' }}>Напечатать выбранную категорию</Button>}
+      <ReactToPrint
+        trigger={() => (
+          <Button
+            variant="gradient"
+            gradient={{ from: "blue", to: "royalblue" }}
+          >
+            Напечатать выбранную категорию
+          </Button>
+        )}
         content={() => componentRef.current}
       />
       <Table className={classes.container} ref={componentRef}>

@@ -17,7 +17,7 @@ import ContactForm from "./ContactForm";
 import Grafik from "./Grafik";
 import HeaderCallBtn from "./Header-call-btn";
 import { openModal } from "@mantine/modals";
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure } from "@mantine/hooks";
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -94,16 +94,38 @@ export function HeaderSimple({ linksMain }) {
   });
 
   return (
-    <Header height={{ base: 50, md: 70, sm: 70 }} p="md">
+    <Header height={{ base: 70 }} p="md">
       <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
-      <Drawer
-        opened={openeDrawer}
-        onClose={close}
-        title="Authentication"
-        overlayProps={{ opacity: 0.5, blur: 4 }}
-      >
-        {items}
-      </Drawer>
+        <Drawer
+          opened={openeDrawer}
+          onClose={close}
+          title="Меню"
+          overlayProps={{ opacity: 0.5, blur: 4 }}
+        >
+          {items}
+          <Group spacing="md" align="center" mt="xl" position="center">
+            <HeaderCallBtn />
+            <Button
+              mr="md"
+              variant="gradient"
+              gradient={{ from: "blue", to: "royalblue" }}
+              color="orange"
+              onClick={() => {
+                openModal({
+                  title: "Форма заказа звонка",
+                  children: (
+                    <>
+                      <ContactForm />
+                    </>
+                  ),
+                });
+              }}
+            >
+              Заказать звонок
+            </Button>
+            <ThemeChange />
+          </Group>
+        </Drawer>
         <MediaQuery largerThan="md" styles={{ display: "none" }}>
           <Burger
             onClick={open}
@@ -112,43 +134,46 @@ export function HeaderSimple({ linksMain }) {
             mr="xl"
           />
         </MediaQuery>
-
-        <Container className={classes.header}>
-          <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+        <MediaQuery
+          smallerThan="md"
+          styles={{ display: "flex", justifyContent: "flex-end" }}
+        >
+          <Container className={classes.header}>
             <Image
               width={60}
               src="https://firebasestorage.googleapis.com/v0/b/klen-824fd.appspot.com/o/klen-logo.png?alt=media&token=e8ed398c-1e98-4418-8f8e-f182e6ce6b88"
             />
-          </MediaQuery>
-          <Grafik />
-          <MediaQuery smallerThan="md" styles={{ display: "none" }}>
-            <Group spacing="xs">{items}</Group>
-          </MediaQuery>
-          <Group spacing="md" align="center">
-            <HeaderCallBtn />
+
+            <Grafik />
             <MediaQuery smallerThan="md" styles={{ display: "none" }}>
-              <Button
-                mr="md"
-                variant="gradient"
-                gradient={{ from: "blue", to: "royalblue" }}
-                color="orange"
-                onClick={() => {
-                  openModal({
-                    title: "Форма заказа звонка",
-                    children: (
-                      <>
-                        <ContactForm />
-                      </>
-                    ),
-                  });
-                }}
-              >
-                Заказать звонок
-              </Button>
+              <Group spacing="xs">{items}</Group>
             </MediaQuery>
-            <ThemeChange />
-          </Group>
-        </Container>
+            <MediaQuery smallerThan="md" styles={{ display: "none" }}>
+              <Group spacing="md" align="center">
+                <HeaderCallBtn />
+                <Button
+                  mr="md"
+                  variant="gradient"
+                  gradient={{ from: "blue", to: "royalblue" }}
+                  color="orange"
+                  onClick={() => {
+                    openModal({
+                      title: "Форма заказа звонка",
+                      children: (
+                        <>
+                          <ContactForm />
+                        </>
+                      ),
+                    });
+                  }}
+                >
+                  Заказать звонок
+                </Button>
+                <ThemeChange />
+              </Group>
+            </MediaQuery>
+          </Container>
+        </MediaQuery>
       </div>
     </Header>
   );
