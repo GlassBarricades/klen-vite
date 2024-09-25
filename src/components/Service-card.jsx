@@ -15,7 +15,7 @@ const ServiceCard = ({ title, img, link }) => {
     <Anchor component={Link} to={`/${link}`}>
       <Paper p="md" className={classes.card}>
         <Image fit="contain" height={180} src={img} />
-        <Title align="center">{title}</Title>
+        <Title order={4} align="center">{title}</Title>
       </Paper>
     </Anchor>
   );
